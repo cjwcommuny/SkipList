@@ -1,7 +1,3 @@
-//
-// Created by cjw on 2018/6/4.
-//
-
 #include "skiplist.h"
 namespace SkipList {
     /*

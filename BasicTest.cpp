@@ -2,7 +2,7 @@
 #include "skiplist.h"
 /*
  * This file is used by the programmer for the basic test of the correctness of the program
- * */
+*/
 
 namespace BasicTest {
     void test_init() {

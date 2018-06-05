@@ -1,9 +1,6 @@
-//
-// Created by cjw on 2018/6/4.
-//
-
 #include "node.h"
 namespace SkipList {
+    //initiliaze the node by a vector containing nullptr
     node::node(int key, size_t levelNum)
     {
         this->key = key;
@@ -11,12 +8,14 @@ namespace SkipList {
         this->levels = levels;
     }
 
+    //constructor 2
     node::node(int X)
     {
         key = X;
         this->levels = std::vector<node *>();
     }
 
+    //constructor 3
     node::node(int key, std::vector<SkipList::node *> &levels)
     {
         this->key = key;
