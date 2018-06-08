@@ -12,7 +12,7 @@ namespace SkipList {
     node::node(int X)
     {
         key = X;
-        this->levels = std::vector<node *>();
+        this->levels = std::vector<node *>{nullptr};
     }
 
     //constructor 3

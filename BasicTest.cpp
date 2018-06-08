@@ -1,3 +1,6 @@
+#ifndef SKIPLISTCPPVERSION_BASICTEST_CPP
+#define SKIPLISTCPPVERSION_BASICTEST_CPP
+
 #include <vector>
 #include "skiplist.h"
 /*
@@ -205,3 +208,4 @@ namespace BasicTest {
     }
 }
 
+#endif //SKIPLISTCPPVERSION_BASICTEST_CPP

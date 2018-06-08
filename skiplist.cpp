@@ -228,4 +228,31 @@ namespace SkipList {
         }
         return levelNum;
     }
+
+    /*
+     * delete the skiplist by recursive method del_recursive(...)
+     */
+    skiplist::~skiplist()
+    {
+        if (dummyNode.levels[0] == nullptr) {
+            return;
+        } else {
+            del_recursive(dummyNode.levels[0]);
+        }
+    }
+
+    /*
+     * we use this method to recursively delete the node from tail
+     * to head.
+     */
+    void skiplist::del_recursive(SkipList::node *delNode)
+    {
+        if (delNode->levels[0] == nullptr) {
+            //if delNode is the tail node
+            delete delNode;
+        } else {
+            del_recursive(delNode->levels[0]);
+            delete delNode;
+        }
+    }
 }
