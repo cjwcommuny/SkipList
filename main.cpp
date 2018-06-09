@@ -6,6 +6,7 @@
 #include <random>
 #include <algorithm>
 #include <chrono>
+#include <ctime>
 /*
  * skiplist的节点是node类。skiplist作为一个driver，其中存储包含了首个dummy node和尾部的dummy node。
  * 这两个dummy node中的key分别存储了INT_MIN与INT_MAX，作为sentinal
@@ -18,9 +19,9 @@
 void insertTest(int N)
 {
     std::default_random_engine e;
-    //std::uniform_int_distribution<> u(INT_MIN, INT_MAX);
-    std::uniform_int_distribution<> u(-50, 50);
-    const int testNum = 10;
+    std::uniform_int_distribution<> u(INT_MIN, INT_MAX);
+    //std::uniform_int_distribution<> u(-50, 50);
+    const int testNum = 20;
     double totalTime = 0;
     std::vector<int> init_vector(N);
     //generate random vector
@@ -31,13 +32,17 @@ void insertTest(int N)
     std::uniform_int_distribution<> v(*init_vector.cbegin(), *init_vector.cend());
     for (int i = 0; i < testNum; ++i) {
         SkipList::skiplist list(init_vector);//init skiplist
-        auto start = std::chrono::system_clock::now();//start clock
         int temp_random = v(e);
-        list.insert(init_vector[temp_random - temp_random / N * N]);
-        auto end = std::chrono::system_clock::now();//clock ends
-        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-        totalTime += double(duration.count()) * std::chrono::microseconds::period::num /
-                     std::chrono::microseconds::period::den;
+        int X = init_vector[temp_random - temp_random / N * N];
+        //auto start = std::chrono::system_clock::now();//start clock
+        clock_t start = clock();
+        list.del(X);
+        clock_t end   = clock();
+        //auto end = std::chrono::system_clock::now();//clock ends
+        //auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+        totalTime += (double)(end - start) / CLOCKS_PER_SEC;
+        //totalTime += double(duration.count()) * std::chrono::microseconds::period::num /
+        //           std::chrono::microseconds::period::den;
     }
     std::cout << totalTime << std::endl; //not divide testNum
 }
