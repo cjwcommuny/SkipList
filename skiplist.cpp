@@ -36,7 +36,7 @@ namespace SkipList {
         * we use dummyNode's member "levels" to store the pointers which point to 
         * the next node of every level of the current node we are handling 
         */
-        dummyNode.levels.push_back(tailNode);//level 1
+        dummyNode.levels[0] = tailNode;//level 1
 
         //for every element of the vector, C++ 11 feature
         for (auto element: initVec) {
