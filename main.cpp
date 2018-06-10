@@ -36,12 +36,12 @@ void insertTest(int N)
         int temp_random = v(e);
         int X = init_vector[temp_random - temp_random / N * N];
         //auto start = std::chrono::system_clock::now();//start clock
-        clock_t start = clock();
-        list.insert(X);
-        clock_t end = clock();
+        //clock_t start = clock();
+        clock_t duration = list.insert(X);
+        //clock_t end = clock();
         //auto end = std::chrono::system_clock::now();//clock ends
         //auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-        totalTime += (double)(end - start) / CLOCKS_PER_SEC;
+        totalTime += (double) duration / CLOCKS_PER_SEC;
         //totalTime += double(duration.count()) * std::chrono::microseconds::period::num /
         //           std::chrono::microseconds::period::den;
     }

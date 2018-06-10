@@ -163,7 +163,7 @@ namespace SkipList {
     /*
     * we use "insert" method to insert an element into the skiplist.
     */
-    void skiplist::insert(int X)
+    clock_t skiplist::insert(int X)
     {
         size_t levelNum = determineLevelNum();
         auto newNode = new node(X, levelNum);
@@ -188,6 +188,7 @@ namespace SkipList {
         * in this search, we start from the max level of the node needed to be inserted
         * instead of the maximum level of the skiplist
         */
+        clock_t start = clock();
         while (currentLevel >= 0) {
             while (currentNode->levels[currentLevel]->key < X) {
                 currentNode = currentNode->levels[currentLevel];
@@ -199,6 +200,8 @@ namespace SkipList {
             --currentLevel;
         }
         ++nodeNum;
+        clock_t end = clock();
+        return end - start;
     }
 
     /*

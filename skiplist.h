@@ -19,7 +19,7 @@ namespace SkipList {
     public:
         explicit skiplist(const std::vector<int> &initVec);//由一个vector初始化skiplist，用于最初的skiplist初始化，特别注意要求这个vector降序！！
         ~skiplist();
-        void insert(int X);//插入元素
+        clock_t insert(int X);//插入元素
         node *find(int X);//查找元素，如果没找到返回nullptr，找到的话返回指向对应node的指针
         bool del(int X);//删除元素，如果该元素存在在skiplist中，删除它并返回true，否则返回false
         size_t getMaxLevel();//读取当前skiplist的最大层数
