@@ -22,7 +22,7 @@ void insertTest(int N)
     std::default_random_engine e;
     std::uniform_int_distribution<> u(INT_MIN, INT_MAX);
     //std::uniform_int_distribution<> u(-50, 50);
-    const int testNum = 20;
+    const int testNum = 30;
     double totalTime = 0;
     std::vector<int> init_vector(N);
     //generate random vector
@@ -57,19 +57,22 @@ int main()
     //BasicTest::test_del();
     //insertTest(20);
 
-    //insertTest(1);
+    insertTest(1);
     insertTest(10);
     insertTest(50);
     insertTest(100);
+    insertTest(300);
+    insertTest(500);
+    insertTest(700);
     insertTest(1000);
-    //insertTest(2000);
+    insertTest(2000);
     insertTest(3000);
-    //insertTest(4000);
+    insertTest(4000);
     insertTest(5000);
-    //insertTest(6000);
+    insertTest(6000);
     insertTest(7000);
-    //insertTest(8000);
-    //insertTest(9000);
+    insertTest(8000);
+    insertTest(9000);
     insertTest(10000);
     insertTest(12000);
     insertTest(15000);

@@ -8,7 +8,7 @@ namespace SkipList {
     bool GenerateRandom()
     {
         std::random_device device;
-        std::mt19937 gen(device());
+        //std::mt19937 gen(device());
         std::bernoulli_distribution b(0.5);
         bool result = b(device);
         return result;
@@ -176,12 +176,13 @@ namespace SkipList {
         if (levelNum > getMaxLevel()) {
             size_t moreLevelNum = levelNum - getMaxLevel();
             for (int i = 0; i < moreLevelNum; ++i) {
-                newNode->levels.push_back(tailNode);
-                dummyNode.levels.push_back(newNode);
+                //newNode->levels.push_back(tailNode);
+                //dummyNode.levels.push_back(newNode);
+                dummyNode.levels.push_back(tailNode);
             }
         }
+        int currentLevel = (int) getMaxLevel() - 1;
         node *currentNode = &dummyNode;
-        int currentLevel = (int) levelNum - 1;//index start from 0
         /*
         * the analogous searching to find the position where node can be inserted.
         * in this search, we start from the max level of the node needed to be inserted
@@ -191,8 +192,10 @@ namespace SkipList {
             while (currentNode->levels[currentLevel]->key < X) {
                 currentNode = currentNode->levels[currentLevel];
             }
-            newNode->levels[currentLevel] = currentNode->levels[currentLevel];
-            currentNode->levels[currentLevel] = newNode;
+            if (currentLevel < levelNum) {
+                newNode->levels[currentLevel] = currentNode->levels[currentLevel];
+                currentNode->levels[currentLevel] = newNode;
+            }
             --currentLevel;
         }
         ++nodeNum;
