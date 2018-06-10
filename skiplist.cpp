@@ -166,6 +166,7 @@ namespace SkipList {
     void skiplist::insert(int X)
     {
         size_t levelNum = determineLevelNum();
+        auto newNode = new node(X, levelNum);
         /*
         * we first have to determine whether the number of level of the node 
         * needed to be inserted is larger than the number of level of the skiplist.
@@ -175,11 +176,10 @@ namespace SkipList {
         if (levelNum > getMaxLevel()) {
             size_t moreLevelNum = levelNum - getMaxLevel();
             for (int i = 0; i < moreLevelNum; ++i) {
-                dummyNode.levels.push_back(tailNode);
-                tailNode->levels.push_back(nullptr);
+                newNode->levels.push_back(tailNode);
+                dummyNode.levels.push_back(newNode);
             }
         }
-        auto newNode = new node(X, levelNum);
         node *currentNode = &dummyNode;
         int currentLevel = (int) levelNum - 1;//index start from 0
         /*

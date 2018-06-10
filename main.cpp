@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <chrono>
 #include <ctime>
+#include <cmath>
 /*
  * skiplist的节点是node类。skiplist作为一个driver，其中存储包含了首个dummy node和尾部的dummy node。
  * 这两个dummy node中的key分别存储了INT_MIN与INT_MAX，作为sentinal
@@ -29,15 +30,15 @@ void insertTest(int N)
         init_vector[j] = u(e);//using random num to initialize vector
     }
     std::sort(init_vector.rbegin(), init_vector.rend());//descending order
-    std::uniform_int_distribution<> v(*init_vector.cbegin(), *init_vector.cend());
+    std::uniform_int_distribution<> v(0, INT_MAX);
     for (int i = 0; i < testNum; ++i) {
         SkipList::skiplist list(init_vector);//init skiplist
         int temp_random = v(e);
         int X = init_vector[temp_random - temp_random / N * N];
         //auto start = std::chrono::system_clock::now();//start clock
         clock_t start = clock();
-        list.del(X);
-        clock_t end   = clock();
+        list.insert(X);
+        clock_t end = clock();
         //auto end = std::chrono::system_clock::now();//clock ends
         //auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
         totalTime += (double)(end - start) / CLOCKS_PER_SEC;
@@ -55,7 +56,8 @@ int main()
     //BasicTest::test_search();
     //BasicTest::test_del();
     //insertTest(20);
-    insertTest(1);
+
+    //insertTest(1);
     insertTest(10);
     insertTest(50);
     insertTest(100);
@@ -73,5 +75,7 @@ int main()
     insertTest(15000);
     insertTest(17000);
     insertTest(20000);
+    insertTest(30000);
+    insertTest(40000);
     return 0;
 }
